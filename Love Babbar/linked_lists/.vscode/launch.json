@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/vaibhavgupta/Downloads/VAULT MAC/Learnings/DSA/Love Babbar/linked_lists/lecture_33",
-      "program": "/Users/vaibhavgupta/Downloads/VAULT MAC/Learnings/DSA/Love Babbar/linked_lists/lecture_33/build/Debug/outDebug"
+      "cwd": "/Users/vaibhavgupta/Downloads/VAULT MAC/Learnings/DSA/Love Babbar/linked_lists/lecture_33_linked_list_2",
+      "program": "/Users/vaibhavgupta/Downloads/VAULT MAC/Learnings/DSA/Love Babbar/linked_lists/lecture_33_linked_list_2/build/Debug/outDebug"
     }
   ]
 }
