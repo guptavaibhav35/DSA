@@ -76,7 +76,7 @@ void printList(Node *&head)
   // Creaiting the temp pointer of type node and assigning it the value of head
   Node *temp = head;
 
-  cout << "Priniting the doubly linkedlist: " << endl;
+  cout << "Printing the doubly linkedlist: " << endl;
   // Using a while loop to iterate over the linkedlist
   // the breakout condition here is to check if the temp pointer is equal to null or not
   while (temp != NULL)
@@ -91,38 +91,108 @@ void printList(Node *&head)
   cout << endl;
 }
 
+//**************************************************************************
+//**Insertion at the tail of the linkedlist*
+//**************************************************************************
+// The main task here is to insert a node at the tail of the linkedlist
+// this function has a void return type and takes in 3 arguments which are
+// the head of the linkedlist, the tail of the linkedlist and the data that has to be
+// entered in the new node of the linkedlist
+// The main intuition here is to first check if this is our first node or not
+// for that we will check if the head and the tail of the linkedlist are pointing to null
+// or not, if yes then this is our first node of the linkedlist and is no different from just creating a new node
+// so for that we will just create a new node and assign the new node its data,
+// and now since this is our first node, then it means the head and tail of the linkedlist
+// will be this new node, so we will make the head and the tail pointer point to this new node
+// And if this condition is false, i.e., this is not our first node then it means there are some node
+// already present in the linkedlist
+// So for that we already know the tail of the linkedlist, so we will just create a new node
+// we will make the next of the current tail point to this new node, and make the prev of this
+// new node point to the current tail of the doubly linkedlist
+// Then since this new node is the last node in the linkedlist, we will make
+// the temp point to this new node
 void insertAtTail(Node *&head, Node *&tail, int data)
 {
+  // Checking if this is the first node of the linkedlist by checking if the head and tail
+  // of the linkedlist are equal to NULL or not?
   if (head == NULL && tail == NULL)
   {
+    // If yes then this is our first node in the linkedlist
+    // creating a new node temp and also initializing the data for the new node
     Node *temp = new Node(data);
+    // making the tail of the linkedlist point to this new node temp
     tail = temp;
+    // Making the head of the linkedlist point to this new node temp
     head = temp;
   }
+  // If this is not the first node in the linkedlist
   else
   {
+    // Then creating a new node temp and also initializing the data for the new node
     Node *temp = new Node(data);
+    // Making the next of the current tail point to this new node temp
     tail->next = temp;
+    // Making the prev of this new node temp point to the current tail
     temp->prev = tail;
+    // Making the tail point to this new node temp
     tail = temp;
   }
+
+  // Printing a confirmation message that a new node has been inserted at the tail of the linkedlist
+  cout << "A new node has been inserted at the tail of the linkedlist" << endl;
 }
 
+//**************************************************************************
+//**Insertion at the head of the linkedlist*
+//**************************************************************************
+// The main task here is to insert a node at the head of the linkedlist
+// this function has a void return type and takes in 3 arguments which are
+// the head of the linkedlist, the tail of the linkedlist and the data that has to be
+// entered in the new node of the linkedlist
+// The main intuition here is to first check if this is our first node or not
+// for that we will check if the head and the tail of the linkedlist are pointing to null
+// or not, if yes then this is our first node of the linkedlist and is no different from just creating a new node
+// so for that we will just create a new node and assign the new node its data,
+// and now since this is our first node, then it means the head and tail of the linkedlist
+// will be this new node, so we will make the head and the tail pointer point to this new node
+// And if this condition is false, i.e., this is not our first node then it means there are some node
+// already present in the linkedlist and we have to insert a new node at the head of the linkedlist
+// so for that we will first create a new node and then make the next of this new node point to
+// the current head of the linkedlist and make the prev of the current head point to this new node
+// and at last we will make the head of the linkedlist point to this new node of the linkedlist
+// this way we have inserted a new node at the head of the linkedlist
 void insertAtHead(Node *&head, Node *&tail, int data)
 {
+  // Checking if this is our first node or not? for this we are comparing if the head and tail
+  // of the current linkedlist point to NULL or not?
   if (head == NULL && tail == NULL)
   {
+    // If yes then this is our very first node in the linkedlist,
+    // So we will first create a new node and also assign it with the data
     Node *temp = new Node(data);
+    // Then we will make the tail point to this new node temp
     tail = temp;
+    // Also we will make the head point to this new node temp
     head = temp;
+    // printing a confirmation message that a new node has been inserted at the head of the linkedlist
+    cout << "A new node has been inserted at the head of the linkedlist" << endl;
+    // And since now no more operations are needed so we will return back to the function call
     return;
   }
+  // If this is not the first node then we already have some nodes in the linkedlist
   else
   {
+    // So we will first create a new node temp and also give it the data
     Node *temp = new Node(data);
+    // Then we will make the next of the new node temp point to the current head of the LL
     temp->next = head;
+    // Then we will make the prev of the current head of the linkedlist point to this new node temp
     head->prev = temp;
+    // then we will make the current head of the linkedlist point to this new node temp so that this is our updated head
     head = temp;
+    // printing a confirmation message that a new node has been inserted at the head of the linkedlist
+    cout << "A new node has been inserted at the head of the linkedlist" << endl;
+    // And since now no more operations are needed so we will return back to the function call
     return;
   }
 }
