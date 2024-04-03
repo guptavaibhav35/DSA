@@ -197,9 +197,85 @@ void insertAtHead(Node *&head, Node *&tail, int data)
   }
 }
 
-void insertAtPosition(Node *&head, Node *tail, int data, int position)
+//**************************************************************************
+//**Finding length of the linkedlist*
+//**************************************************************************
+// The main task here is to find the number of nodes in the linkedlist or the length of the linkedlist
+// This function has an int return type as it returns the count of nodes in the linkedlist, also it only has one parameter which is the
+// head of the linkedlist
+// So the main idea here is to first create a Node type pointer temp and make it point to the current head of the linkedlist,
+// so here this temp pointer will behave as our new head of the linkedlist
+// Now we will create a variable len with an intial value of 0, this variable will store the count of the number of nodes of the linkedlist
+// first we will check if the temp pointer is pointing to NULL or not,
+// if true then it means that the head is pointing to NULL and the linkedlist is empty as it has no nodes
+// so in that condition we willr return the variable len which in this case has a value 0
+// else if the temp is not pointing to NULL, then it means there is atlease one node in the linkedlist,
+// so we will increment the variable len by 1
+// then we will use a while loop to iterate over our linkedlist, so the breakout condition here will be to check if the next of the temp is equal to null or not?
+// if no then it means there are some nodes ahead of the current pointer temp,
+// so we will increment the value of len variable by 1 and then move our temp pointer to the next node.
+// At last we return the len variable which has the count of number of nodes in our linkedlist
+int findLength(Node *head)
 {
+  // Creating a temp pointer that points to the current head of the linkedlist
+  Node *temp = head;
+  // Creating a len variable and initializing it with a value 0 which will help us to store the count of number of nodes
+  int len = 0;
+  // now checking if the linkedlist is empty or not, so for that we will check if the temp pointer points to NULL or not?
+  if (temp == NULL)
+  {
+    // If yes then our linkedlist is empty and we return back to the functionc all, the len variable which has a value of 0.
+    return len;
+  }
+  // If not then it means we might have a node in the linkedlist
+  if (temp != NULL)
+  {
+    // So if the temp is not equal to NULL then it means we have atleast one node in the linkedlist
+    // Incrementing the value of len by 1
+    len++;
+  }
 
+  // Now using a while loop to iterate over the linkedlist where the breakout condition will be
+  while (temp->next != NULL)
+  {
+    len++;
+    temp = temp->next;
+  }
+  return len;
+}
+
+//**************************************************************************
+//**Insertion at a position of the linkedlist*
+//**************************************************************************
+// The main task here is to insert data into a new node in the linkedlist at a specific position in the linkedlist
+// This function has a void return type and takes in 4 parameters which are: head of the linkedlist, tail of the linkedlist,
+// data that has to be inserted in the new node and the position at which the new node has to be inserted.
+// The main idea behind this also is to first check is this is our first node in the linkedlist or not as the user may specify
+// any position but if that position does not exist then it makes no sense to insert the node at that place hence we are first checking
+// if this is our first node in the linkedlist or not, for that we will check if the head and tail of the linkedlist is equal to
+// NULL or not?, if yes then it means that it is our first node in the linkedlist
+// So we will create our first node and also assign its data element, and since this is our first node in the linkedlist
+// so the head and the tail pointer must point to this node.
+// else if false we will check if the value of position is equal to 1 or not?, if yes then it means we have to insert at
+// the head of the linkedlist, so in that we will first create a new node temp and also assign it its data element
+// then we will make the next of this temp node point to the current head of the linkedlist
+// and we will make the prev of the current head point to this current node
+// then we will make the head of the linkedlist point to this new node temp
+// else if false, we will then check if the position to insert the node is greater than or equal the lenght of the linkedlist
+// So for that we will be using the findLength() to check the lenght of the linkedlist
+// or not, if yes then it means that we need to insert the new node at the tail of the linkedlist
+// So we will create a new node temo and also initialize the data element for it
+// Then we will make the next of the tail point to this new node temp
+// then we will make the prev of this new node temp point to the current tail of the linkedlist
+// then we will make the tail point to the new node temp of the linkedlist
+// Else if false, then it means that the position to insert our new node is in the middle of the linkedlist
+// so first we will try to reach the node before the position where we have to insert the new node in the linkedlist
+// so for that we will use a variable pos that will help us to store the current position of the linkedlist
+// also we will create a new Node pointer temp which will be equal to the current head of the linkedlist and will act as our head
+// then we will use our while loop to iterate over the linkedlist where the breakout condition will be the check if the temp
+void insertAtPosition(Node *&head, Node *&tail, int data, int position)
+{
+  int length = findLength(head);
   if (head == NULL && tail == NULL)
   {
     Node *temp = new Node(data);
@@ -213,11 +289,18 @@ void insertAtPosition(Node *&head, Node *tail, int data, int position)
     head->prev = temp;
     head = temp;
   }
+  else if (position >= length)
+  {
+    Node *temp = new Node(data);
+    tail->next = temp;
+    temp->prev = tail;
+    tail = temp;
+  }
   else
   {
     int pos = 1;
     Node *temp = head;
-    while (pos < position - 1)
+    while (temp != NULL && pos < position - 1)
     {
       temp = temp->next;
       pos++;
@@ -228,26 +311,6 @@ void insertAtPosition(Node *&head, Node *tail, int data, int position)
     newNode->next->prev = newNode;
     temp->next = newNode;
   }
-}
-
-int findLength(Node *head)
-{
-  Node *temp = head;
-  int len = 0;
-  if (temp == NULL)
-  {
-    return len;
-  }
-  if (temp != NULL)
-  {
-    len++;
-  }
-  while (temp->next != NULL)
-  {
-    len++;
-    temp = temp->next;
-  }
-  return len;
 }
 
 void deleteNode(Node *&head, Node *&tail, int position)
