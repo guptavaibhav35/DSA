@@ -200,7 +200,7 @@ public:
 };
 
 //**************************************************************************
-//**Implementing Queue wwithout using STL**
+//**Implementing Queue without using STL**
 //**************************************************************************
 // Here we are trying to implement a queue using the our own class
 // This function has a void return type and does not take any arguments
