@@ -72,6 +72,5 @@ int main()
     // using the printList() function again to print the updated linkedlist
     printList(head);
 
-    //****
     return 0;
 }
