@@ -1,6 +1,7 @@
 #include <iostream>
 #include "queue_stl.cpp"
 #include "queue_without_stl.cpp"
+#include "circular_queue.cpp"
 using namespace std;
 
 int main()
@@ -18,5 +19,10 @@ int main()
     // for operations on the queue
     // calling the queue_without_stl() to implement it
     queue_without_stl();
+
+    // Here we are trying to build our own class for circular queue and also implementing all
+    // functions for operations on the queue
+    // Calling the circular_queue() function to implement it
+    circular_queue();
     return 0;
 }
