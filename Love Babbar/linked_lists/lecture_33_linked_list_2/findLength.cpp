@@ -41,11 +41,14 @@ int findLength(Node *head)
         len++;
     }
 
-    // Now using a while loop to iterate over the linkedlist where the breakout condition will be
+    // Now using a while loop to iterate over the linkedlist where the breakout condition will be until the next of the temp pointer does not become null
     while (temp->next != NULL)
     {
+        // If here then we are incrementing the lenght counter by one
         len++;
+        // Then moving the current pointer to the next node on the right
         temp = temp->next;
     }
+    // returning the final len which as the count of the number of nodes in the linkedlist
     return len;
 }
